@@ -14,6 +14,12 @@ const argv = yargs(hideBin(process.argv))
     description: 'Puerto en el que correrá el servidor',
     default: 3030
   })
+  .option('dbpath', {
+    alias: 'a',
+    type: 'string',
+    description: 'I',
+    default: __dirname + "/"
+  })
   .option('autosave', {
     alias: 'a',
     type: 'number',
@@ -35,7 +41,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 // Inicialización de la base de datos JSON
-const db = jsonDbManager(__dirname + "/DB.json", { autosave: argv.autosave, logs: argv.logs });
+const db = jsonDbManager(`${argv.dbpath}/DB.json`, { autosave: argv.autosave, logs: argv.logs });
 
 app.use(express.json());
 
@@ -135,3 +141,4 @@ server.listen(argv.port, () => {
   console.log(`Autosave configurado a ${argv.autosave} ms`);
   console.log(`Logs ${argv.logs ? 'habilitados' : 'deshabilitados'}`);
 });
+
