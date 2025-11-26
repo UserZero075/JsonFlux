@@ -21,7 +21,7 @@ const argv = yargs(hideBin(process.argv))
     default: __dirname + "/"
   })
   .option('autosave', {
-    alias: 'a',
+    alias: 'k',
     type: 'number',
     description: 'Intervalo de autoguardado de la base de datos (en milisegundos)',
     default: 15000
@@ -141,4 +141,5 @@ server.listen(argv.port, () => {
   console.log(`Autosave configurado a ${argv.autosave} ms`);
   console.log(`Logs ${argv.logs ? 'habilitados' : 'deshabilitados'}`);
 });
+
 
