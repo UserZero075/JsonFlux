@@ -1,6 +1,6 @@
 {
   "name": "jsonflux",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A database on your own server in real time that allows you to save all the data of your apps in one place in a very efficient and private way, without limits or third-party problems",
   "main": "index.js",
   "exports": {
