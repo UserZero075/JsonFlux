@@ -27,7 +27,10 @@ const jsonDbManager = (path = __dirname + "/DB.json", opts = {}) => {
 
     this.save = () => {
         try {
-            fs.writeFileSync(this.path, JSON.stringify(this.data), "utf-8");
+            const tmpPath = this.path + ".tmp." + Date.now();
+            const json = JSON.stringify(this.data);
+            fs.writeFileSync(tmpPath, json, "utf-8");
+            fs.renameSync(tmpPath, this.path);
         } catch (err) {
             this.log("Error al guardar datos: " + err);
         }
@@ -136,7 +139,9 @@ const jsonDbManager = (path = __dirname + "/DB.json", opts = {}) => {
 
         Object.keys(uniques).forEach(u => this.data.__UNIQUES__[model][u].push(uniques[u]));
 
-        const nextIndex = String(Object.keys(this.data[model]).length + 1);
+        if (!this.data.__UNIQUES__._counters) this.data.__UNIQUES__._counters = {};
+        if (!this.data.__UNIQUES__._counters[model]) this.data.__UNIQUES__._counters[model] = Object.keys(this.data[model]).length + 1;
+        const nextIndex = String(this.data.__UNIQUES__._counters[model]++);
         modelData.index = nextIndex;
         modelData.createdAt = new Date().getTime();
         this.data[model][nextIndex] = modelData;
