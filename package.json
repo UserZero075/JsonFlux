@@ -1,7 +1,7 @@
 {
   "name": "jsonflux",
-  "version": "1.1.0",
-  "description": "A database on your own server in real time that allows you to save all the data of your apps in one place in a very efficient and private way, without limits or third-party problems",
+  "version": "2.0.0",
+  "description": "High-performance, crash-safe real-time JSON database with Socket.IO event synchronization, in-memory indexing, and Node.js & Python SDKs",
   "main": "index.js",
   "exports": {
     ".": "./index.js",
@@ -9,14 +9,25 @@
     "./database-client": "./clients/Nodejs/database_client.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node --test tests/unit.test.js tests/integration.test.js tests/python_client.test.js",
+    "test:unit": "node --test tests/unit.test.js",
+    "test:integration": "node --test tests/integration.test.js",
+    "test:stress": "node --test tests/stress.test.js"
   },
-  "keywords": ["database", "json", "socket-io", "python3", "nodejs-server"],
+  "keywords": [
+    "database",
+    "json",
+    "socket-io",
+    "python3",
+    "nodejs-server"
+  ],
   "author": "DevFast Project",
   "license": "Apache2.0",
   "dependencies": {
     "express": "^4.18.2",
     "socket.io": "^4.7.4",
+    "socket.io-client": "^4.8.4",
     "yargs": "^17.7.2"
   }
 }

@@ -1,0 +1,11 @@
+node_modules/
+package-lock.json
+*.log
+*.tmp*
+*.bak
+DB.json
+__pycache__/
+*.pyc
+.pytest_cache/
+tests/test_*_db.json*
+.DS_Store
